@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.ProductCategoryMapper">
+    
+    <resultMap type="ProductCategory" id="ProductCategoryResult">
+        <result property="categoryId"    column="category_id"    />
+        <result property="categoryName"    column="category_name"    />
+        <result property="categorySort"    column="category_sort"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="tenantId"     column="tenant_id" />
+    </resultMap>
+
+    <sql id="selectProductCategoryVo">
+        select category_id, category_name, category_sort, created_by, created_time,
+        updated_by, updated_time, tenant_id from crm_product_category
+    </sql>
+
+    <select id="selectProductCategoryList" parameterType="ProductCategory" resultMap="ProductCategoryResult">
+        <include refid="selectProductCategoryVo"/>
+        <where>  
+            <if test="categoryName != null  and categoryName != ''"> and category_name like concat('%', #{categoryName}, '%')</if>
+            <if test="categorySort != null "> and category_sort = #{categorySort}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="createdTime != null "> and created_time = #{createdTime}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+            <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+            <if test="tenantId != null"> and tenant_id = #{tenantId}</if>
+        </where>
+    </select>
+    
+    <select id="selectProductCategoryByCategoryId" parameterType="Long" resultMap="ProductCategoryResult">
+        <include refid="selectProductCategoryVo"/>
+        where category_id = #{categoryId}
+    </select>
+        
+    <insert id="insertProductCategory" parameterType="ProductCategory" useGeneratedKeys="true" keyProperty="categoryId">
+        insert into crm_product_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryName != null">category_name,</if>
+            <if test="categorySort != null">category_sort,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createdTime != null">created_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updatedTime != null">updated_time,</if>
+            <if test="tenantId != null">tenant_id</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryName != null">#{categoryName},</if>
+            <if test="categorySort != null">#{categorySort},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createdTime != null">#{createdTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updatedTime != null">#{updatedTime},</if>
+            <if test="tenantId != null">#{tenantId}</if>
+         </trim>
+    </insert>
+
+    <update id="updateProductCategory" parameterType="ProductCategory">
+        update crm_product_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="categoryName != null">category_name = #{categoryName},</if>
+            <if test="categorySort != null">category_sort = #{categorySort},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createdTime != null">created_time = #{createdTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updatedTime != null">updated_time = #{updatedTime},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+        </trim>
+        where category_id = #{categoryId}
+    </update>
+
+    <delete id="deleteProductCategoryByCategoryId" parameterType="Long">
+        delete from crm_product_category where category_id = #{categoryId}
+    </delete>
+
+    <delete id="deleteProductCategoryByCategoryIds" parameterType="String">
+        delete from crm_product_category where category_id in 
+        <foreach item="categoryId" collection="array" open="(" separator="," close=")">
+            #{categoryId}
+        </foreach>
+    </delete>
+</mapper>

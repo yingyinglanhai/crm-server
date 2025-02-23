@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.ChanceMapper">
+    
+    <resultMap type="Chance" id="ChanceResult">
+        <result property="chanceId"    column="chance_id"    />
+        <result property="chanceTitle"    column="chance_title"    />
+        <result property="findDate"    column="find_date"    />
+        <result property="expectSignDate"    column="expect_sign_date"    />
+        <result property="expectMoney"    column="expect_money"    />
+        <result property="chanceDesc"    column="chance_desc"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="customerName"    column="customer_name"    />
+        <result property="tenantId"    column="tenant_id"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectChanceVo">
+        SELECT
+            chance_id, chance_title, find_date, expect_sign_date, expect_money, chance_desc,
+            ce.customer_id, cm.customer_name,ce.tenant_id, ce.created_by, ce.create_time, ce.updated_by, ce.update_time
+        FROM crm_chance ce left join crm_customer cm
+        ON ce.customer_id = cm.customer_id
+    </sql>
+
+    <select id="selectChanceList" parameterType="Chance" resultMap="ChanceResult">
+        <include refid="selectChanceVo"/>
+        <where>  
+            <if test="chanceId != null "> and chance_id = #{chanceId}</if>
+            <if test="chanceTitle != null  and chanceTitle != ''"> and chance_title like concat('%', #{chanceTitle}, '%')</if>
+            <if test="findDate != null "> and find_date = #{findDate}</if>
+            <if test="expectSignDate != null "> and expect_sign_date = #{expectSignDate}</if>
+            <if test="expectMoney != null "> and expect_money = #{expectMoney}</if>
+            <if test="chanceDesc != null  and chanceDesc != ''"> and chance_desc = #{chanceDesc}</if>
+            <if test="customerId != null "> and ce.customer_id = #{customerId}</if>
+            <if test="customerName != null  and customerName != ''"> and cm.customer_name like concat('%', #{customerName}, '%')</if>
+            <if test="tenantId != null "> and ce.tenant_id = #{tenantId}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="createTime != null "> and create_time = #{createTime}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectChanceByChanceId" parameterType="Long" resultMap="ChanceResult">
+        <include refid="selectChanceVo"/>
+        where chance_id = #{chanceId}
+    </select>
+        
+    <insert id="insertChance" parameterType="Chance">
+        insert into crm_chance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chanceId != null">chance_id,</if>
+            <if test="chanceTitle != null">chance_title,</if>
+            <if test="findDate != null">find_date,</if>
+            <if test="expectSignDate != null">expect_sign_date,</if>
+            <if test="expectMoney != null">expect_money,</if>
+            <if test="chanceDesc != null">chance_desc,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="tenantId != null">tenant_id,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chanceId != null">#{chanceId},</if>
+            <if test="chanceTitle != null">#{chanceTitle},</if>
+            <if test="findDate != null">#{findDate},</if>
+            <if test="expectSignDate != null">#{expectSignDate},</if>
+            <if test="expectMoney != null">#{expectMoney},</if>
+            <if test="chanceDesc != null">#{chanceDesc},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateChance" parameterType="Chance">
+        update crm_chance
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chanceTitle != null">chance_title = #{chanceTitle},</if>
+            <if test="findDate != null">find_date = #{findDate},</if>
+            <if test="expectSignDate != null">expect_sign_date = #{expectSignDate},</if>
+            <if test="expectMoney != null">expect_money = #{expectMoney},</if>
+            <if test="chanceDesc != null">chance_desc = #{chanceDesc},</if>
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where chance_id = #{chanceId}
+    </update>
+
+    <delete id="deleteChanceByChanceId" parameterType="Long">
+        delete from crm_chance where chance_id = #{chanceId}
+    </delete>
+
+    <delete id="deleteChanceByChanceIds" parameterType="String">
+        delete from crm_chance where chance_id in 
+        <foreach item="chanceId" collection="array" open="(" separator="," close=")">
+            #{chanceId}
+        </foreach>
+    </delete>
+</mapper>

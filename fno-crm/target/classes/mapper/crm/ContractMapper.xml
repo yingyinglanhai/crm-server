@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.ContractMapper">
+    
+    <resultMap type="Contract" id="ContractResult">
+        <result property="contractId"    column="contract_id"    />
+        <result property="contractNo"    column="contract_no"    />
+        <result property="contractName"    column="contract_name"    />
+        <result property="contractType"    column="contract_type"    />
+        <result property="contractMoney"    column="contract_money"    />
+        <result property="signDate"    column="sign_date"    />
+        <result property="beginDate"    column="begin_date"    />
+        <result property="endDate"    column="end_date"    />
+        <result property="contractDesc"    column="contract_desc"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="customerName"    column="customer_name"    />
+        <result property="tenantId"     column="tenant_id " />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectContractVo">
+        SELECT contract_id, contract_no, contract_name, contract_type, contract_money,
+                sign_date, begin_date, end_date, contract_desc, customer_id, customer_name,
+                tenant_id, created_by, create_time, updated_by, update_time
+        FROM crm_contract
+    </sql>
+
+    <select id="selectContractList" parameterType="Contract" resultMap="ContractResult">
+        <include refid="selectContractVo"/>
+        <where>  
+            <if test="contractNo != null  and contractNo != ''"> and contract_no like concat('%', #{contractNo}, '%')</if>
+            <if test="contractName != null  and contractName != ''"> and contract_name like concat('%', #{contractName}, '%')</if>
+            <if test="contractType != null  and contractType != ''"> and contract_type = #{contractType}</if>
+            <if test="contractMoney != null "> and contract_money = #{contractMoney}</if>
+            <if test="signDate != null "> and sign_date = #{signDate}</if>
+            <if test="beginDate != null "> and begin_date = #{beginDate}</if>
+            <if test="endDate != null "> and end_date = #{endDate}</if>
+            <if test="contractDesc != null  and contractDesc != ''"> and contract_desc = #{contractDesc}</if>
+            <if test="customerId != null "> and customer_id = #{customerId}</if>
+            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
+            <if test="tenantId != null "> and tenant_id = #{tenantId}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+        </where>
+    </select>
+    
+    <select id="selectContractByContractId" parameterType="Long" resultMap="ContractResult">
+        <include refid="selectContractVo"/>
+        where contract_id = #{contractId}
+    </select>
+        
+    <insert id="insertContract" parameterType="Contract" useGeneratedKeys="true" keyProperty="contractId">
+        insert into crm_contract
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractNo != null">contract_no,</if>
+            <if test="contractName != null">contract_name,</if>
+            <if test="contractType != null">contract_type,</if>
+            <if test="contractMoney != null">contract_money,</if>
+            <if test="signDate != null">sign_date,</if>
+            <if test="beginDate != null">begin_date,</if>
+            <if test="endDate != null">end_date,</if>
+            <if test="contractDesc != null">contract_desc,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="customerName != null">customer_name,</if>
+            <if test="tenantId != null">tenant_id,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractNo != null">#{contractNo},</if>
+            <if test="contractName != null">#{contractName},</if>
+            <if test="contractType != null">#{contractType},</if>
+            <if test="contractMoney != null">#{contractMoney},</if>
+            <if test="signDate != null">#{signDate},</if>
+            <if test="beginDate != null">#{beginDate},</if>
+            <if test="endDate != null">#{endDate},</if>
+            <if test="contractDesc != null">#{contractDesc},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="customerName != null">#{customerName},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateContract" parameterType="Contract">
+        update crm_contract
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="contractNo != null">contract_no = #{contractNo},</if>
+            <if test="contractName != null">contract_name = #{contractName},</if>
+            <if test="contractType != null">contract_type = #{contractType},</if>
+            <if test="contractMoney != null">contract_money = #{contractMoney},</if>
+            <if test="signDate != null">sign_date = #{signDate},</if>
+            <if test="beginDate != null">begin_date = #{beginDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+            <if test="contractDesc != null">contract_desc = #{contractDesc},</if>
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="customerName != null">customer_name = #{customerName},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where contract_id = #{contractId}
+    </update>
+
+    <delete id="deleteContractByContractId" parameterType="Long">
+        delete from crm_contract where contract_id = #{contractId}
+    </delete>
+
+    <delete id="deleteContractByContractIds" parameterType="String">
+        delete from crm_contract where contract_id in 
+        <foreach item="contractId" collection="array" open="(" separator="," close=")">
+            #{contractId}
+        </foreach>
+    </delete>
+</mapper>

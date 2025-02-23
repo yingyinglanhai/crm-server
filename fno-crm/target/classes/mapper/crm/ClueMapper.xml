@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.ClueMapper">
+    
+    <resultMap type="Clue" id="ClueResult">
+        <result property="clueId"    column="clue_id"    />
+        <result property="clueName"    column="clue_name"    />
+        <result property="industry"    column="industry"    />
+        <result property="grade"    column="grade"    />
+        <result property="source"    column="source"    />
+        <result property="phone"    column="phone"    />
+        <result property="wechat"    column="wechat"    />
+        <result property="email"    column="email"    />
+        <result property="address"    column="address"    />
+        <result property="website"    column="website"    />
+        <result property="description"    column="description"    />
+        <result property="claimUserId"    column="claim_user_id"    />
+        <result property="tenantId"    column="tenant_id"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectClueVo">
+        select clue_id, clue_name, industry, grade, source, phone,wechat,email, address, website,
+        description, claim_user_id, tenant_id, created_by, create_time, updated_by, update_time
+        from crm_clue
+    </sql>
+
+    <select id="selectClueList" parameterType="Clue" resultMap="ClueResult">
+        <include refid="selectClueVo"/>
+        <where>  
+            <if test="clueName != null  and clueName != ''"> and clue_name like concat('%', #{clueName}, '%')</if>
+            <if test="industry != null  and industry != ''"> and industry = #{industry}</if>
+            <if test="grade != null  and grade != ''"> and grade = #{grade}</if>
+            <if test="source != null  and source != ''"> and source = #{source}</if>
+            <if test="phone != null  and phone != ''"> and phone like concat('%', #{phone}, '%')</if>
+            <if test="wechat != null  and wechat != ''"> and wechat = #{wechat}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="website != null  and website != ''"> and website = #{website}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <choose>
+                <when test="claimUserId != null and claimUserId != 0">
+                    and claim_user_id = #{claimUserId}
+                </when>
+                <otherwise>
+                    and (claim_user_id is NULL or claim_user_id = 0)
+                </otherwise>
+            </choose>
+            <if test="tenantId != null "> and tenant_id = #{tenantId}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+        </where>
+    </select>
+    
+    <select id="selectClueById" parameterType="Long" resultMap="ClueResult">
+        <include refid="selectClueVo"/>
+        where clue_id = #{clueId}
+    </select>
+        
+    <insert id="insertClue" parameterType="Clue" useGeneratedKeys="true" keyProperty="clueId">
+        insert into crm_clue
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="clueName != null">clue_name,</if>
+            <if test="industry != null">industry,</if>
+            <if test="grade != null">grade,</if>
+            <if test="source != null">source,</if>
+            <if test="phone != null">phone,</if>
+            <if test="wechat != null">wechat,</if>
+            <if test="email != null">email,</if>
+            <if test="address != null">address,</if>
+            <if test="website != null">website,</if>
+            <if test="description != null">description,</if>
+            <if test="claimUserId != null">claim_user_id,</if>
+            <if test="tenantId != null">tenant_id,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="clueName != null">#{clueName},</if>
+            <if test="industry != null">#{industry},</if>
+            <if test="grade != null">#{grade},</if>
+            <if test="source != null">#{source},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="wechat != null">#{wechat},</if>
+            <if test="email != null">#{email},</if>
+            <if test="address != null">#{address},</if>
+            <if test="website != null">#{website},</if>
+            <if test="description != null">#{description},</if>
+            <if test="claimUserId != null">#{claimUserId},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClue" parameterType="Clue">
+        update crm_clue
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="clueName != null">clue_name = #{clueName},</if>
+            <if test="industry != null">industry = #{industry},</if>
+            <if test="grade != null">grade = #{grade},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="wechat != null">wechat = #{wechat},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="website != null">website = #{website},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="claimUserId != null">claim_user_id = #{claimUserId},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where clue_id = #{clueId}
+    </update>
+
+    <delete id="deleteClueById" parameterType="Long">
+        delete from crm_clue where clue_id = #{clueId}
+    </delete>
+
+    <delete id="deleteClueByIds" parameterType="String">
+        delete from crm_clue where clue_id in
+        <foreach item="clueId" collection="array" open="(" separator="," close=")">
+            #{clueId}
+        </foreach>
+    </delete>
+</mapper>

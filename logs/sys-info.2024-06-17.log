@@ -1,0 +1,48 @@
+15:52:56.590 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.3.Final
+15:52:56.590 [restartedMain] INFO  com.fno.Application - [logStarting,55] - Starting Application using Java 1.8.0_291 on LAPTOP-T0DASU3T with PID 54128 (D:\workspace\java\crm\crm-server\fno-admin\target\classes started by 苏 in D:\workspace\java\crm\crm-server)
+15:52:56.612 [restartedMain] INFO  com.fno.Application - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+15:53:04.728 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8090"]
+15:53:04.731 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+15:53:04.732 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.63]
+15:53:05.303 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+15:53:16.453 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,972] - {dataSource-1} inited
+15:53:21.652 [restartedMain] INFO  o.f.s.b.e.EventRegistryAutoConfiguration - [discoverDeploymentResources,104] - No deployment resources were found for autodeployment
+15:53:22.418 [restartedMain] INFO  o.f.s.b.ProcessEngineAutoConfiguration - [discoverDeploymentResources,104] - No deployment resources were found for autodeployment
+15:53:23.821 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [initConfigurators,970] - Found 2 Engine Configurators in total:
+15:53:23.827 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [initConfigurators,972] - class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+15:53:23.828 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [initConfigurators,972] - class org.flowable.idm.engine.configurator.IdmEngineConfigurator (priority:150000)
+15:53:23.829 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsBeforeInit,998] - Executing beforeInit() of class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+15:53:23.849 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsBeforeInit,998] - Executing beforeInit() of class org.flowable.idm.engine.configurator.IdmEngineConfigurator (priority:150000)
+15:53:26.535 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsAfterInit,1005] - Executing configure() of class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+15:53:28.695 [restartedMain] INFO  l.lockservice - [log,23] - Successfully acquired change log lock
+15:53:34.902 [restartedMain] INFO  liquibase.changelog - [log,23] - Reading from crm.FLW_EV_DATABASECHANGELOG
+15:53:35.096 [restartedMain] INFO  l.lockservice - [log,23] - Successfully released change log lock
+15:53:35.160 [restartedMain] INFO  l.lockservice - [log,23] - Successfully acquired change log lock
+15:53:35.257 [restartedMain] INFO  l.lockservice - [log,23] - Successfully released change log lock
+15:53:35.292 [restartedMain] INFO  o.f.e.i.EventRegistryEngineImpl - [<init>,53] - EventRegistryEngine default created
+15:53:35.294 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsAfterInit,1005] - Executing configure() of class org.flowable.idm.engine.configurator.IdmEngineConfigurator (priority:150000)
+15:53:35.480 [restartedMain] INFO  o.f.i.e.i.IdmEngineImpl - [<init>,52] - IdmEngine default created
+15:53:36.931 [restartedMain] INFO  o.f.e.i.ProcessEngineImpl - [<init>,88] - ProcessEngine default created
+15:53:37.210 [restartedMain] INFO  o.f.e.i.c.ValidateV5EntitiesCmd - [execute,43] - Total of v5 deployments found: 0
+15:53:41.403 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+15:53:41.464 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+15:53:41.465 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+15:53:41.467 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+15:53:41.471 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+15:53:41.472 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+15:53:41.473 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+15:53:41.473 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@165ece83
+15:53:53.386 [restartedMain] INFO  o.f.j.s.i.a.AbstractAsyncExecutor - [start,116] - Starting up the async job executor [org.flowable.spring.job.service.SpringAsyncExecutor].
+15:53:53.405 [Thread-10] INFO  o.f.j.s.i.a.ResetExpiredJobsRunnable - [run,57] - starting to reset expired jobs for engine bpmn
+15:53:53.406 [Thread-9] INFO  o.f.j.s.i.a.AcquireTimerJobsRunnable - [run,50] - starting to acquire async jobs due
+15:53:53.409 [Thread-8] INFO  o.f.j.s.i.a.AcquireAsyncJobsDueRunnable - [run,52] - starting to acquire async jobs due
+15:53:53.430 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8090"]
+15:53:56.765 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+15:53:56.838 [restartedMain] INFO  com.fno.Application - [logStarted,61] - Started Application in 61.339 seconds (JVM running for 64.782)

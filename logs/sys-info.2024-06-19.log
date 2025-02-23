@@ -1,0 +1,84 @@
+17:02:59.155 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.3.Final
+17:02:59.155 [restartedMain] INFO  com.fno.Application - [logStarting,55] - Starting Application using Java 1.8.0_291 on LAPTOP-T0DASU3T with PID 59656 (D:\workspace\java\crm\crm-server\fno-admin\target\classes started by 苏 in D:\workspace\java\crm\crm-server)
+17:02:59.180 [restartedMain] INFO  com.fno.Application - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+17:03:05.924 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8090"]
+17:03:05.925 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+17:03:05.926 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.63]
+17:03:06.262 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+17:03:15.185 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,972] - {dataSource-1} inited
+17:03:17.461 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2051] - {dataSource-1} closing ...
+17:03:17.474 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2124] - {dataSource-1} closed
+17:03:17.486 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+17:03:57.041 [restartedMain] INFO  com.fno.Application - [logStarting,55] - Starting Application using Java 1.8.0_291 on LAPTOP-T0DASU3T with PID 53276 (D:\workspace\java\crm\crm-server\fno-admin\target\classes started by 苏 in D:\workspace\java\crm\crm-server)
+17:03:57.043 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.3.Final
+17:03:57.046 [restartedMain] INFO  com.fno.Application - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+17:04:02.923 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8090"]
+17:04:02.924 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+17:04:02.924 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.63]
+17:04:03.468 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+17:04:11.193 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,972] - {dataSource-1} inited
+17:04:13.523 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2051] - {dataSource-1} closing ...
+17:04:13.541 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2124] - {dataSource-1} closed
+17:04:13.553 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+17:06:00.751 [restartedMain] INFO  com.fno.Application - [logStarting,55] - Starting Application using Java 1.8.0_291 on LAPTOP-T0DASU3T with PID 75412 (D:\workspace\java\crm\crm-server\fno-admin\target\classes started by 苏 in D:\workspace\java\crm\crm-server)
+17:06:00.756 [restartedMain] INFO  com.fno.Application - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+17:06:00.758 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.3.Final
+17:06:07.084 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8090"]
+17:06:07.085 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+17:06:07.085 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.63]
+17:06:07.368 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+17:06:15.458 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,972] - {dataSource-1} inited
+17:06:18.192 [restartedMain] INFO  o.f.s.b.e.EventRegistryAutoConfiguration - [discoverDeploymentResources,104] - No deployment resources were found for autodeployment
+17:06:18.451 [restartedMain] INFO  o.f.s.b.ProcessEngineAutoConfiguration - [discoverDeploymentResources,104] - No deployment resources were found for autodeployment
+17:06:19.105 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [initConfigurators,970] - Found 2 Engine Configurators in total:
+17:06:19.106 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [initConfigurators,972] - class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+17:06:19.107 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [initConfigurators,972] - class org.flowable.idm.engine.configurator.IdmEngineConfigurator (priority:150000)
+17:06:19.107 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsBeforeInit,998] - Executing beforeInit() of class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+17:06:19.114 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsBeforeInit,998] - Executing beforeInit() of class org.flowable.idm.engine.configurator.IdmEngineConfigurator (priority:150000)
+17:06:20.715 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsAfterInit,1005] - Executing configure() of class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+17:06:21.893 [restartedMain] INFO  l.lockservice - [log,23] - Successfully acquired change log lock
+17:06:24.504 [restartedMain] INFO  liquibase.changelog - [log,23] - Reading from crm.FLW_EV_DATABASECHANGELOG
+17:06:24.618 [restartedMain] INFO  l.lockservice - [log,23] - Successfully released change log lock
+17:06:24.700 [restartedMain] INFO  l.lockservice - [log,23] - Successfully acquired change log lock
+17:06:24.743 [restartedMain] INFO  l.lockservice - [log,23] - Successfully released change log lock
+17:06:24.778 [restartedMain] INFO  o.f.e.i.EventRegistryEngineImpl - [<init>,53] - EventRegistryEngine default created
+17:06:24.779 [restartedMain] INFO  o.f.s.SpringProcessEngineConfiguration - [configuratorsAfterInit,1005] - Executing configure() of class org.flowable.idm.engine.configurator.IdmEngineConfigurator (priority:150000)
+17:06:24.864 [restartedMain] INFO  o.f.i.e.i.IdmEngineImpl - [<init>,52] - IdmEngine default created
+17:06:25.442 [restartedMain] INFO  o.f.e.i.ProcessEngineImpl - [<init>,88] - ProcessEngine default created
+17:06:25.513 [restartedMain] INFO  o.f.e.i.c.ValidateV5EntitiesCmd - [execute,43] - Total of v5 deployments found: 0
+17:06:26.426 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+17:06:26.453 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+17:06:26.453 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+17:06:26.456 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+17:06:26.458 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+17:06:26.459 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+17:06:26.460 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+17:06:26.461 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@386e1d7d
+17:06:33.670 [restartedMain] INFO  o.f.j.s.i.a.AbstractAsyncExecutor - [start,116] - Starting up the async job executor [org.flowable.spring.job.service.SpringAsyncExecutor].
+17:06:33.673 [Thread-9] INFO  o.f.j.s.i.a.AcquireTimerJobsRunnable - [run,50] - starting to acquire async jobs due
+17:06:33.673 [Thread-8] INFO  o.f.j.s.i.a.AcquireAsyncJobsDueRunnable - [run,52] - starting to acquire async jobs due
+17:06:33.673 [Thread-10] INFO  o.f.j.s.i.a.ResetExpiredJobsRunnable - [run,57] - starting to reset expired jobs for engine bpmn
+17:06:33.693 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8090"]
+17:06:35.417 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+17:06:35.442 [restartedMain] INFO  com.fno.Application - [logStarted,61] - Started Application in 35.688 seconds (JVM running for 37.976)
+17:09:46.043 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:10:04.388 [schedule-pool-1] INFO  sys-user - [run,60] - [127.0.0.1]内网IP[admin][Error][用户不存在/密码错误][]
+17:10:26.658 [schedule-pool-1] INFO  sys-user - [run,60] - [127.0.0.1]内网IP[admin][Success][登录成功][1]
+18:22:28.441 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:22:28.806 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+18:22:28.807 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:22:28.808 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+18:22:28.810 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+18:22:28.817 [SpringApplicationShutdownHook] INFO  o.f.j.s.i.a.AbstractAsyncExecutor - [shutdown,166] - Shutting down the async job executor [org.flowable.spring.job.service.SpringAsyncExecutor].
+18:22:28.819 [flowable-bpmn-reset-expired-jobs] INFO  o.f.j.s.i.a.ResetExpiredJobsRunnable - [run,84] - stopped resetting expired jobs for engine bpmn
+18:22:28.819 [flowable-bpmn-acquire-async-jobs] INFO  o.f.j.s.i.a.AcquireAsyncJobsDueRunnable - [run,79] - stopped async job due acquisition for engine bpmn
+18:22:28.819 [flowable-bpmn-acquire-timer-jobs] INFO  o.f.j.s.i.a.AcquireTimerJobsRunnable - [run,116] - stopped async job due acquisition
+18:22:28.894 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2051] - {dataSource-1} closing ...
+18:22:28.914 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2124] - {dataSource-1} closed

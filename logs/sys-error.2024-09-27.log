@@ -1,0 +1,5 @@
+18:34:11.078 [flowable-bpmn-acquire-async-jobs] ERROR c.a.d.f.s.StatFilter - [internalAfterStatementExecute,504] - slow sql 2360 millis. select
+        RES.*   
+        from ACT_RU_JOB RES
+         WHERE SCOPE_TYPE_ is null and LOCK_EXP_TIME_ is null 
+         LIMIT ? OFFSET ?[1,0]

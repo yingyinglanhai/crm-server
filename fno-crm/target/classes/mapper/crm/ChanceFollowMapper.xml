@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.ChanceFollowMapper">
+    
+    <resultMap type="ChanceFollow" id="ChanceFollowResult">
+        <result property="followId"    column="follow_id"    />
+        <result property="followDate"    column="follow_date"    />
+        <result property="followWay"    column="follow_way"    />
+        <result property="followContent"    column="follow_content"    />
+        <result property="nextFollowDate"    column="next_follow_date"    />
+        <result property="satisfiedLevel"    column="satisfied_level"    />
+        <result property="contacterId"    column="contacter_id"    />
+        <result property="contacterName"    column="contacter_name"    />
+        <result property="chanceId"    column="chance_id"    />
+        <result property="tenantId"    column="tenant_id"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectChanceFollowVo">
+        SELECT follow_id, follow_date, follow_way, follow_content, next_follow_date,
+                satisfied_level, cf.contacter_id,cc.contacter_name, chance_id, cf.tenant_id,
+                cf.created_by, cf.create_time, cf.updated_by, cf.update_time
+        FROM crm_chance_follow cf
+        LEFT JOIN crm_customer_contacter cc
+        ON cf.contacter_id = cc.contacter_id
+    </sql>
+
+    <select id="selectChanceFollowList" parameterType="ChanceFollow" resultMap="ChanceFollowResult">
+        <include refid="selectChanceFollowVo"/>
+        <where>  
+            <if test="followDate != null "> and follow_date = #{followDate}</if>
+            <if test="followWay != null  and followWay != ''"> and follow_way = #{followWay}</if>
+            <if test="followContent != null  and followContent != ''"> and follow_content = #{followContent}</if>
+            <if test="nextFollowDate != null "> and next_follow_date = #{nextFollowDate}</if>
+            <if test="satisfiedLevel != null  and satisfiedLevel != ''"> and satisfied_level = #{satisfiedLevel}</if>
+            <if test="contacterId != null "> and cf.contacter_id = #{contacterId}</if>
+            <if test="contacterName != null  and contacterName != ''"> and cc.contacter_name = #{contacterName}</if>
+            <if test="chanceId != null "> and chance_id = #{chanceId}</if>
+            <if test="tenantId != null "> and cf.tenant_id = #{tenantId}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+        </where>
+    </select>
+    
+    <select id="selectChanceFollowByFollowId" parameterType="Long" resultMap="ChanceFollowResult">
+        <include refid="selectChanceFollowVo"/>
+        where follow_id = #{followId}
+    </select>
+        
+    <insert id="insertChanceFollow" parameterType="ChanceFollow">
+        insert into crm_chance_follow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="followId != null">follow_id,</if>
+            <if test="followDate != null">follow_date,</if>
+            <if test="followWay != null">follow_way,</if>
+            <if test="followContent != null">follow_content,</if>
+            <if test="nextFollowDate != null">next_follow_date,</if>
+            <if test="satisfiedLevel != null">satisfied_level,</if>
+            <if test="contacterId != null">contacter_id,</if>
+            <if test="chanceId != null">chance_id,</if>
+            <if test="tenantId != null">tenant_id,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="followId != null">#{followId},</if>
+            <if test="followDate != null">#{followDate},</if>
+            <if test="followWay != null">#{followWay},</if>
+            <if test="followContent != null">#{followContent},</if>
+            <if test="nextFollowDate != null">#{nextFollowDate},</if>
+            <if test="satisfiedLevel != null">#{satisfiedLevel},</if>
+            <if test="contacterId != null">#{contacterId},</if>
+            <if test="chanceId != null">#{chanceId},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateChanceFollow" parameterType="ChanceFollow">
+        update crm_chance_follow
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="followDate != null">follow_date = #{followDate},</if>
+            <if test="followWay != null">follow_way = #{followWay},</if>
+            <if test="followContent != null">follow_content = #{followContent},</if>
+            <if test="nextFollowDate != null">next_follow_date = #{nextFollowDate},</if>
+            <if test="satisfiedLevel != null">satisfied_level = #{satisfiedLevel},</if>
+            <if test="contacterId != null">contacter_id = #{contacterId},</if>
+            <if test="chanceId != null">chance_id = #{chanceId},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where follow_id = #{followId}
+    </update>
+
+    <delete id="deleteChanceFollowByFollowId" parameterType="Long">
+        delete from crm_chance_follow where follow_id = #{followId}
+    </delete>
+
+    <delete id="deleteChanceFollowByFollowIds" parameterType="String">
+        delete from crm_chance_follow where follow_id in 
+        <foreach item="followId" collection="array" open="(" separator="," close=")">
+            #{followId}
+        </foreach>
+    </delete>
+</mapper>

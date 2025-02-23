@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.CustomerContacterMapper">
+    
+    <resultMap type="CustomerContacter" id="CustomerContacterResult">
+        <result property="contacterId"    column="contacter_id"    />
+        <result property="contacterName"    column="contacter_name"    />
+        <result property="gender"    column="gender"    />
+        <result property="position"    column="position"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="wechat"    column="wechat"    />
+        <result property="email"    column="email"    />
+        <result property="address"    column="address"    />
+        <result property="lastContactDate"    column="last_contact_date"    />
+        <result property="nextContactDate"    column="next_contact_date"    />
+        <result property="isDecider"    column="is_decider"    />
+        <result property="customerId"    column="customer_id" />
+        <result property="tenantId"    column="tenant_id"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectCustomerContacterVo">
+        select contacter_id, contacter_name, gender, position, mobile, wechat, email, address,
+        last_contact_date, next_contact_date, is_decider, customer_id,tenant_id, created_by,
+        create_time, updated_by, update_time from crm_customer_contacter
+    </sql>
+
+    <select id="selectCustomerContacterList" parameterType="CustomerContacter" resultMap="CustomerContacterResult">
+        <include refid="selectCustomerContacterVo"/>
+        <where>  
+            <if test="contacterName != null  and contacterName != ''"> and contacter_name like concat('%', #{contacterName}, '%')</if>
+            <if test="gender != null  and gender != ''"> and gender = #{gender}</if>
+            <if test="position != null  and position != ''"> and position = #{position}</if>
+            <if test="mobile != null  and mobile != ''"> and mobile = #{mobile}</if>
+            <if test="wechat != null  and wechat != ''"> and wechat = #{wechat}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="lastContactDate != null "> and last_contact_date = #{lastContactDate}</if>
+            <if test="nextContactDate != null "> and next_contact_date = #{nextContactDate}</if>
+            <if test="isDecider != null "> and is_decider = #{isDecider}</if>
+            <if test="customerId != null "> and customer_id = #{customerId}</if>
+            <if test="tenantId != null "> and tenant_id = #{tenantId}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+        </where>
+    </select>
+    
+    <select id="selectCustomerContacterById" parameterType="Long" resultMap="CustomerContacterResult">
+        <include refid="selectCustomerContacterVo"/>
+        where contacter_id = #{contacterId}
+    </select>
+        
+    <insert id="insertCustomerContacter" parameterType="CustomerContacter" useGeneratedKeys="true" keyProperty="contacterId">
+        insert into crm_customer_contacter
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contacterName != null">contacter_name,</if>
+            <if test="gender != null">gender,</if>
+            <if test="position != null">position,</if>
+            <if test="mobile != null">mobile,</if>
+            <if test="wechat != null">wechat,</if>
+            <if test="email != null">email,</if>
+            <if test="address != null">address,</if>
+            <if test="lastContactDate != null">last_contact_date,</if>
+            <if test="nextContactDate != null">next_contact_date,</if>
+            <if test="isDecider != null">is_decider,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="tenantId != null">tenant_id,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contacterName != null">#{contacterName},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="position != null">#{position},</if>
+            <if test="mobile != null">#{mobile},</if>
+            <if test="wechat != null">#{wechat},</if>
+            <if test="email != null">#{email},</if>
+            <if test="address != null">#{address},</if>
+            <if test="lastContactDate != null">#{lastContactDate},</if>
+            <if test="nextContactDate != null">#{nextContactDate},</if>
+            <if test="isDecider != null">#{isDecider},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCustomerContacter" parameterType="CustomerContacter">
+        update crm_customer_contacter
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="contacterName != null">contacter_name = #{contacterName},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="position != null">position = #{position},</if>
+            <if test="mobile != null">mobile = #{mobile},</if>
+            <if test="wechat != null">wechat = #{wechat},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="lastContactDate != null">last_contact_date = #{lastContactDate},</if>
+            <if test="nextContactDate != null">next_contact_date = #{nextContactDate},</if>
+            <if test="isDecider != null">is_decider = #{isDecider},</if>
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where contacter_id = #{contacterId}
+    </update>
+
+    <delete id="deleteCustomerContacterById" parameterType="Long">
+        delete from crm_customer_contacter where contacter_id = #{id}
+    </delete>
+
+    <delete id="deleteCustomerContacterByIds" parameterType="String">
+        delete from crm_customer_contacter where contacter_id in 
+        <foreach item="contacterId" collection="array" open="(" separator="," close=")">
+            #{contacterId}
+        </foreach>
+    </delete>
+</mapper>

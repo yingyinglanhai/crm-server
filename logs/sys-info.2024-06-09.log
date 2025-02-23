@@ -1,0 +1,2 @@
+11:23:29.032 [Druid-ConnectionPool-Create-585332477] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1790] - {dataSource-1} failContinuous is true
+11:23:32.091 [Druid-ConnectionPool-Create-585332477] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1795] - {dataSource-1} failContinuous is false

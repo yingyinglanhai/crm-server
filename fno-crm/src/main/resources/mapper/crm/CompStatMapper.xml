@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.CompStatMapper">
+    
+    <resultMap type="CompStat" id="CompStatResult">
+        <result property="statDate"    column="stat_date"    />
+        <result property="clueTotal"    column="clue_total"    />
+        <result property="customerTotal"    column="customer_total"    />
+        <result property="chanceTotal"    column="chance_total"    />
+        <result property="chanceFollowTotal"    column="chance_follow_total"    />
+        <result property="productTotal"    column="product_total"    />
+        <result property="contractTotal"    column="contract_total"    />
+        <result property="backmoneyTotal"    column="backmoney_total"    />
+        <result property="planBackmoneyTotal"    column="plan_backmoney_total"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="tenantId"    column="tenant_id"    />
+    </resultMap>
+
+    <sql id="selectCompStatVo">
+        select stat_date, clue_total, customer_total, chance_total, chance_follow_total, product_total, contract_total, backmoney_total, plan_backmoney_total, created_by, create_time, updated_by, update_time, tenant_id from crm_stat
+    </sql>
+    <select id="selectAllCompStat" parameterType="CompStat" resultType="CompStat">
+        SELECT
+               SUM(clue_total) AS clueTotal,
+               SUM(customer_total) AS customerTotal,
+               SUM(chance_total) AS chanceTotal,
+               SUM(chance_follow_total) AS chanceFollowTotal,
+               SUM(product_total) AS productTotal,
+               SUM(contract_total) AS contractTotal,
+               SUM(backmoney_total) AS backmoneyTotal,
+               SUM(plan_backmoney_total) AS planBackmoneyTotal
+        FROM crm_stat
+        WHERE tenant_id = #{tenantId}
+    </select>
+
+    <select id="selectCompStatList" parameterType="CompStat" resultMap="CompStatResult">
+        <include refid="selectCompStatVo"/>
+        <where>  
+            <if test="statDate != null  and statDate != ''"> and stat_date = #{statDate}</if>
+            <if test="clueTotal != null "> and clue_total = #{clueTotal}</if>
+            <if test="customerTotal != null "> and customer_total = #{customerTotal}</if>
+            <if test="chanceTotal != null "> and chance_total = #{chanceTotal}</if>
+            <if test="chanceFollowTotal != null "> and chance_follow_total = #{chanceFollowTotal}</if>
+            <if test="productTotal != null "> and product_total = #{productTotal}</if>
+            <if test="contractTotal != null "> and contract_total = #{contractTotal}</if>
+            <if test="backmoneyTotal != null "> and backmoney_total = #{backmoneyTotal}</if>
+            <if test="planBackmoneyTotal != null "> and plan_backmoney_total = #{planBackmoneyTotal}</if>
+            <if test="createTime != null "> and create_time = #{createTime}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+            <if test="tenantId != null "> and tenant_id = #{tenantId}</if>
+        </where>
+    </select>
+    
+    <select id="selectCompStatByStatDate" parameterType="CompStat" resultMap="CompStatResult">
+        <include refid="selectCompStatVo"/>
+        where stat_date = #{statDate} and tenant_id = #{tenantId}
+    </select>
+        
+    <insert id="insertCompStat" parameterType="CompStat">
+        insert into crm_stat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="statDate != null">stat_date,</if>
+            <if test="clueTotal != null">clue_total,</if>
+            <if test="customerTotal != null">customer_total,</if>
+            <if test="chanceTotal != null">chance_total,</if>
+            <if test="chanceFollowTotal != null">chance_follow_total,</if>
+            <if test="productTotal != null">product_total,</if>
+            <if test="contractTotal != null">contract_total,</if>
+            <if test="backmoneyTotal != null">backmoney_total,</if>
+            <if test="planBackmoneyTotal != null">plan_backmoney_total,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="tenantId != null">tenant_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="statDate != null">#{statDate},</if>
+            <if test="clueTotal != null">#{clueTotal},</if>
+            <if test="customerTotal != null">#{customerTotal},</if>
+            <if test="chanceTotal != null">#{chanceTotal},</if>
+            <if test="chanceFollowTotal != null">#{chanceFollowTotal},</if>
+            <if test="productTotal != null">#{productTotal},</if>
+            <if test="contractTotal != null">#{contractTotal},</if>
+            <if test="backmoneyTotal != null">#{backmoneyTotal},</if>
+            <if test="planBackmoneyTotal != null">#{planBackmoneyTotal},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCompStat" parameterType="CompStat">
+        update crm_stat
+        <trim prefix="SET" suffixOverrides=",">
+            <choose>
+                <when test="clueTotal != null and clueTotal &gt; 0">
+                    clue_total = clue_total + #{clueTotal},
+                </when>
+                <when test="clueTotal != null and clueTotal &lt; 0">
+                    clue_total = clue_total - ABS(#{clueTotal}),
+                </when>
+            </choose>
+            <choose>
+                <when test="customerTotal != null and customerTotal &gt; 0">
+                    customer_total = customer_total + #{customerTotal},
+                </when>
+                <when test="customerTotal != null and customerTotal &lt; 0">
+                    customer_total = customer_total - ABS(#{customerTotal}),
+                </when>
+            </choose>
+            <choose>
+                <when test="chanceTotal != null and chanceTotal &gt; 0">
+                    chance_total = chance_total + #{chanceTotal},
+                </when>
+                <when test="chanceTotal != null and chanceTotal &lt; 0">
+                    chance_total = chance_total - ABS(#{chanceTotal}),
+                </when>
+            </choose>
+            <choose>
+                <when test="chanceFollowTotal != null and chanceFollowTotal &gt; 0">
+                    chance_follow_total = chance_follow_total + #{chanceFollowTotal},
+                </when>
+                <when test="chanceFollowTotal != null and chanceFollowTotal &lt; 0">
+                    chance_follow_total = chance_follow_total - ABS(#{chanceFollowTotal}),
+                </when>
+            </choose>
+            <choose>
+                <when test="productTotal != null and productTotal &gt; 0">
+                    product_total = product_total + #{productTotal},
+                </when>
+                <when test="productTotal != null and productTotal &lt; 0">
+                    product_total = product_total - ABS(#{productTotal}),
+                </when>
+            </choose>
+            <choose>
+                <when test="contractTotal != null and contractTotal &gt; 0">
+                    contract_total = contract_total + #{contractTotal},
+                </when>
+                <when test="contractTotal != null and contractTotal &lt; 0">
+                    contract_total = contract_total - ABS(#{contractTotal}),
+                </when>
+            </choose>
+            <choose>
+                <when test="backmoneyTotal != null and backmoneyTotal &gt; 0">
+                    backmoney_total = backmoney_total + #{backmoneyTotal},
+                </when>
+                <when test="backmoneyTotal != null and backmoneyTotal &lt; 0">
+                    backmoney_total = backmoney_total - ABS(#{backmoneyTotal}),
+                </when>
+            </choose>
+            <choose>
+                <when test="planBackmoneyTotal != null and planBackmoneyTotal &gt; 0">
+                    plan_backmoney_total = plan_backmoney_total + #{planBackmoneyTotal},
+                </when>
+                <when test="planBackmoneyTotal != null and planBackmoneyTotal &lt; 0">
+                    plan_backmoney_total = plan_backmoney_total - ABS(#{planBackmoneyTotal}),
+                </when>
+            </choose>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+        </trim>
+        where stat_date = #{statDate} and tenant_id = #{tenantId}
+    </update>
+    <select id="selectClueStatBySource" parameterType="Long" resultType="KV">
+        SELECT source AS k,
+        COUNT(source) AS v1
+        FROM crm_clue
+        WHERE tenant_id = #{tenantId}
+        GROUP BY source
+    </select>
+    <select id="selectLastYearStat" parameterType="Map" resultType="CompStat">
+        SELECT
+        stat_date AS statDate,
+        SUM(clue_total) AS clueTotal,
+        SUM(customer_total) AS customerTotal,
+        SUM(chance_total) AS chanceTotal,
+        SUM(chance_follow_total) AS chanceFollowTotal,
+        SUM(product_total) AS productTotal,
+        SUM(contract_total) AS contractTotal,
+        SUM(backmoney_total) AS backmoneyTotal,
+        SUM(plan_backmoney_total) AS planBackmoneyTotal
+        FROM crm_stat
+        <where>
+            <if test="beginDate != null and beginDate != '' "> and stat_date <![CDATA[>=]]> #{beginDate}</if>
+            <if test="endDate != null and endDate != '' "> and stat_date <![CDATA[<]]> #{endDate}</if>
+            <if test="tenantId != null "> and tenant_id = #{tenantId}</if>
+        </where>
+        GROUP BY stat_date
+    </select>
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.ProductMapper">
+    
+    <resultMap type="Product" id="ProductResult">
+        <result property="productId"    column="product_id"    />
+        <result property="productName"    column="product_name"    />
+        <result property="productCode"    column="product_code"    />
+        <result property="unit"    column="unit"    />
+        <result property="price"    column="price"    />
+        <result property="status"    column="status"    />
+        <result property="categoryId"    column="category_id"    />
+        <result property="categoryName"    column="category_name"    />
+        <result property="description"    column="description"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="tenantId"    column="tenant_id"    />
+    </resultMap>
+
+    <sql id="selectProductVo">
+        select product_id, product_name, product_code, unit, price, status, p.category_id,c.category_name,
+             description, p.created_by, p.create_time, p.updated_by, p.update_time, p.tenant_id
+        from crm_product p left join crm_product_category c on p.category_id = c.category_id
+    </sql>
+
+    <select id="selectProductList" parameterType="Product" resultMap="ProductResult">
+        <include refid="selectProductVo"/>
+        <where>  
+            <if test="productName != null  and productName != ''"> and product_name like concat('%', #{productName}, '%')</if>
+            <if test="productCode != null  and productCode != ''"> and product_code like concat('%', #{productCode}, '%')</if>
+            <if test="unit != null  and unit != ''"> and unit = #{unit}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="categoryId != null "> and category_id = #{categoryId}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+            <if test="tenantId != null "> and p.tenant_id = #{tenantId}</if>
+        </where>
+    </select>
+    
+    <select id="selectProductById" parameterType="Long" resultMap="ProductResult">
+        <include refid="selectProductVo"/>
+        where product_id = #{productId}
+    </select>
+        
+    <insert id="insertProduct" parameterType="Product">
+        insert into crm_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">product_id,</if>
+            <if test="productName != null">product_name,</if>
+            <if test="productCode != null">product_code,</if>
+            <if test="unit != null">unit,</if>
+            <if test="price != null">price,</if>
+            <if test="status != null">status,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="description != null">description,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="tenantId != null">tenant_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">#{productId},</if>
+            <if test="productName != null">#{productName},</if>
+            <if test="productCode != null">#{productCode},</if>
+            <if test="unit != null">#{unit},</if>
+            <if test="price != null">#{price},</if>
+            <if test="status != null">#{status},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="description != null">#{description},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateProduct" parameterType="Product">
+        update crm_product
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productName != null">product_name = #{productName},</if>
+            <if test="productCode != null">product_code = #{productCode},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+        </trim>
+        where product_id = #{productId}
+    </update>
+
+    <delete id="deleteProductById" parameterType="Long">
+        delete from crm_product where product_id = #{productId}
+    </delete>
+
+    <delete id="deleteProductByIds" parameterType="String">
+        delete from crm_product where product_id in 
+        <foreach item="productId" collection="array" open="(" separator="," close=")">
+            #{productId}
+        </foreach>
+    </delete>
+</mapper>

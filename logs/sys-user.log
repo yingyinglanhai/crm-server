@@ -1,0 +1,4 @@
+14:15:08.941 [schedule-pool-1] INFO  sys-user - [run,60] - [127.0.0.1]内网IP[admin][Error][用户不存在/密码错误][]
+14:15:15.605 [schedule-pool-1] INFO  sys-user - [run,60] - [127.0.0.1]内网IP[admin][Error][用户不存在/密码错误][]
+14:15:41.071 [schedule-pool-2] INFO  sys-user - [run,60] - [127.0.0.1]内网IP[admin][Success][登录成功][1]
+14:26:05.522 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====

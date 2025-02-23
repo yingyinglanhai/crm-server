@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fno.crm.mapper.BackmoneyMapper">
+    
+    <resultMap type="Backmoney" id="BackmoneyResult">
+        <result property="backmoneyId"    column="backmoney_id"    />
+        <result property="contractId"    column="contract_id"    />
+        <result property="contractNo"    column="contract_no"    />
+        <result property="contractName"    column="contract_name"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="customerName"    column="customer_name"    />
+        <result property="tenantId"    column="tenant_id"    />
+        <result property="backmoneyDate"    column="backmoney_date"    />
+        <result property="backmoneyAmount"    column="backmoney_amount"    />
+        <result property="backmoneyWay"    column="backmoney_way"    />
+        <result property="backmoneyDesc"    column="backmoney_desc"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectBackmoneyVo">
+        SELECT backmoney_id, contract_id, contract_no, contract_name, customer_id, customer_name,
+               tenant_id, backmoney_date, backmoney_amount, backmoney_way, backmoney_desc,
+               created_by, create_time, updated_by, update_time
+        FROM crm_backmoney
+    </sql>
+
+    <select id="selectBackmoneyList" parameterType="Backmoney" resultMap="BackmoneyResult">
+        <include refid="selectBackmoneyVo"/>
+        <where>  
+            <if test="contractId != null "> and contract_id = #{contractId}</if>
+            <if test="contractNo != null  and contractNo != ''"> and contract_no = #{contractNo}</if>
+            <if test="contractName != null  and contractName != ''"> and contract_name = #{contractName}</if>
+            <if test="customerId != null "> and customer_id = #{customerId}</if>
+            <if test="customerName != null  and customerName != ''"> and customer_name = #{customerName}</if>
+            <if test="tenantId != null "> and tenant_id = #{tenantId}</if>
+            <if test="backmoneyDate != null "> and backmoney_date = #{backmoneyDate}</if>
+            <if test="backmoneyAmount != null "> and backmoney_amount = #{backmoneyAmount}</if>
+            <if test="backmoneyWay != null  and backmoneyWay != ''"> and backmoney_way = #{backmoneyWay}</if>
+            <if test="backmoneyDesc != null  and backmoneyDesc != ''"> and backmoney_desc = #{backmoneyDesc}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+        </where>
+    </select>
+    
+    <select id="selectBackmoneyById" parameterType="Long" resultMap="BackmoneyResult">
+        <include refid="selectBackmoneyVo"/>
+        where backmoney_id = #{backmoneyId}
+    </select>
+        
+    <insert id="insertBackmoney" parameterType="Backmoney" useGeneratedKeys="true" keyProperty="backmoneyId">
+        insert into crm_backmoney
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractId != null">contract_id,</if>
+            <if test="contractNo != null">contract_no,</if>
+            <if test="contractName != null">contract_name,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="customerName != null">customer_name,</if>
+            <if test="tenantId != null">tenant_id,</if>
+            <if test="backmoneyDate != null">backmoney_date,</if>
+            <if test="backmoneyAmount != null">backmoney_amount,</if>
+            <if test="backmoneyWay != null">backmoney_way,</if>
+            <if test="backmoneyDesc != null">backmoney_desc,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updatedBy != null">updated_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractId != null">#{contractId},</if>
+            <if test="contractNo != null">#{contractNo},</if>
+            <if test="contractName != null">#{contractName},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="customerName != null">#{customerName},</if>
+            <if test="tenantId != null">#{tenantId},</if>
+            <if test="backmoneyDate != null">#{backmoneyDate},</if>
+            <if test="backmoneyAmount != null">#{backmoneyAmount},</if>
+            <if test="backmoneyWay != null">#{backmoneyWay},</if>
+            <if test="backmoneyDesc != null">#{backmoneyDesc},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBackmoney" parameterType="Backmoney">
+        update crm_backmoney
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="contractId != null">contract_id = #{contractId},</if>
+            <if test="contractNo != null">contract_no = #{contractNo},</if>
+            <if test="contractName != null">contract_name = #{contractName},</if>
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="customerName != null">customer_name = #{customerName},</if>
+            <if test="tenantId != null">tenant_id = #{tenantId},</if>
+            <if test="backmoneyDate != null">backmoney_date = #{backmoneyDate},</if>
+            <if test="backmoneyAmount != null">backmoney_amount = #{backmoneyAmount},</if>
+            <if test="backmoneyWay != null">backmoney_way = #{backmoneyWay},</if>
+            <if test="backmoneyDesc != null">backmoney_desc = #{backmoneyDesc},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where backmoney_id = #{backmoneyId}
+    </update>
+
+    <delete id="deleteBackmoneyById" parameterType="Long">
+        delete from crm_backmoney where backmoney_id = #{backmoneyId}
+    </delete>
+
+    <delete id="deleteBackmoneyByIds" parameterType="String">
+        delete from crm_backmoney where backmoney_id in 
+        <foreach item="backmoneyId" collection="array" open="(" separator="," close=")">
+            #{backmoneyId}
+        </foreach>
+    </delete>
+</mapper>
