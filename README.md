@@ -68,4 +68,5 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 
 1. 然后每个SaaS客户用自己企业的管理员账号重新登录，再建的角色，用户，部门等信息都是自己企业的数据。与其它企业完全隔离。
 
-   
+   ![image](https://github.com/user-attachments/assets/f5b23ffe-ae90-4f69-b8f7-dd1248e399f1)
+
